@@ -5,9 +5,10 @@ import App from './App';
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import reducer from './reducers'
+import middleware from './middleware'
 import reportWebVitals from './reportWebVitals';
 
-const store = createStore(reducer)
+const store = createStore(reducer, middleware)
 
 ReactDOM.render(
   <React.StrictMode>
