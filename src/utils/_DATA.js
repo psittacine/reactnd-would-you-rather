@@ -2,7 +2,7 @@ let users = {
   sarahedo: {
     id: 'sarahedo',
     name: 'Sarah Edo',
-    avatarURL: "./src/assets/avatars/user-pink700-48dp.svg",
+    avatarURL: 'https://res.cloudinary.com/psittacine/image/upload/v1607496289/Udacity/ReactND/WouldYouRather/avatars/user-pink700-48dp.svg',
     answers: {
       "8xf0y6ziyjabvozdd253nd": 'optionOne',
       "6ni6ok3ym7mf1p33lnez": 'optionTwo',
@@ -14,7 +14,7 @@ let users = {
   tylermcginnis: {
     id: 'tylermcginnis',
     name: 'Tyler McGinnis',
-    avatarURL: "./src/assets/avatars/user-blue700-48dp.svg",
+    avatarURL: 'https://res.cloudinary.com/psittacine/image/upload/v1607496290/Udacity/ReactND/WouldYouRather/avatars/user-blue700-48dp.svg',
     answers: {
       "vthrdm985a262al8qx3do": 'optionOne',
       "xj352vofupe1dqz9emx13r": 'optionTwo',
@@ -24,7 +24,7 @@ let users = {
   johndoe: {
     id: 'johndoe',
     name: 'John Doe',
-    avatarURL: "./src/assets/avatars/user-yellow700-48dp.svg",
+    avatarURL: 'https://res.cloudinary.com/psittacine/image/upload/v1607496289/Udacity/ReactND/WouldYouRather/avatars/user-yellow700-48dp.svg',
     answers: {
       "xj352vofupe1dqz9emx13r": 'optionOne',
       "vthrdm985a262al8qx3do": 'optionTwo',
