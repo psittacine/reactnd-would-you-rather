@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { Button, Card, Heading, Pane, Paragraph } from 'evergreen-ui'
 
 class Question extends Component {
 
@@ -14,36 +15,86 @@ class Question extends Component {
         }
 
         return (
-            <div className='border-solid border-4 border-blue-400 m-2 p-2'>
+            <Card
+                alignItems="center"
+                justifyContent="center"
+                border="default"
+                margin={16}
+                padding={8}
+                elevation={2}
+            >
+                <Pane
+                    display="flex"
+                    alignItems="center"
+                >
+                    <img
+                        src={users[author].avatarURL}
+                        alt={`Avatar of ${users[author].name}`}
+                        className='mr-1'
+                    />
+                    <Heading
+                        is="h2"
+                        size={700}
+                    >
+                        {users[author].name} asks:
+                    </Heading>
+                </Pane>
+                <Pane
+                    margin={4}
+                    display="flex"
+                    justifyContent="center"
+                    alignItems="center"
+                    flexDirection="column"
+                >
+                    <Heading
+                        is="h3"
+                        size={600}
+                        marginBottom={16}
+                    >
+                        Would you rather...
+                    </Heading>
+                    <div className="flex text-center">
+                        <Card
+                            alignItems="center"
+                            justifyContent="center"
+                            border="default"
+                            padding={8}
+                            marginX={8}
+                            width={200}
+                        >
+                            <Paragraph
+                                size={500}
+                            >
+                                {question.optionOne.text}
+                            </Paragraph>
+                        </Card>
+                        <Card
+                            alignItems="center"
+                            justifyContent="center"
+                            border="default"
+                            padding={8}
+                            marginX={8}
+                            width={200}
+                        >
+                            <Paragraph
+                                size={500}
+                            >
+                                {question.optionTwo.text}
+                            </Paragraph>
+                        </Card>
+                    </div>
+                    {/* <Link to="/questions/:question_id"> */}
+                        <Button
+                            appearance="primary"
+                            marginTop={16}
+                            height={40}
+                        >
+                            View Poll
+                        </Button>
+                    {/* </Link> */}
 
-                {/* TODO:  Remove this TEST info */}
-                <div className='text-red-400'>
-                    <p>[Question Component]</p>
-                    <p className='mb-4'>Logged in as:
-                        <span className='px-1'>
-                            <img
-                                src={userAuthed.avatarURL}
-                                alt={`Avatar of ${userAuthed.name}`}
-                                className='inline-block h-4 w-4'
-                            />
-                        </span>
-                        {userAuthed.name}
-                    </p>
-                </div>
-                {/* END - TEST info */}
-
-                {/* Question and Author */}
-                <h2>{users[author].name} asks:</h2>
-                <img
-                    src={users[author].avatarURL}
-                    alt={`Avatar of ${users[author].name}`}
-                    className=''
-                />
-                <h3>Would you rather...</h3>
-                <p>A: {question.optionOne.text}</p>
-                <p>B: {question.optionTwo.text}</p>
-
-            </div>
+                </Pane>
+            </Card>
         )
     }
 }
@@ -53,6 +104,7 @@ function mapStateToProps ({authedUser, users, questions}, { id }) {
     const author = question ? question["author"] : null
 
     console.log('***** question *****', question)
+    console.log('***** question.id *****', question.id)
     console.log('***** author *****', author)
 
     return {
@@ -60,7 +112,7 @@ function mapStateToProps ({authedUser, users, questions}, { id }) {
         users,
         question,
         author,
-        userAuthed: users[authedUser] /* TODO:  Remove userAuthed if not needed after testing */
+        userAuthed: users[authedUser]
     }
 }
 
