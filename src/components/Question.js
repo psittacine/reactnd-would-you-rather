@@ -88,6 +88,9 @@ class Question extends Component {
                             appearance="primary"
                             marginTop={16}
                             height={40}
+                            width={416}
+                            justifyContent="center"
+                            onClick={()=> console.log('>>>> Clicked "View Poll" for question ID ' + question.id)}
                         >
                             View Poll
                         </Button>
