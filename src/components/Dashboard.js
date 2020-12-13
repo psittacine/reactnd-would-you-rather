@@ -5,18 +5,24 @@ import { Card, Heading, Pane } from 'evergreen-ui'
 
 class Dashboard extends Component {
     state = {
-        showQuestions: 'unansweredQuestions'
+        showQuestions: 'unansweredQuestions',
+        hasVoted: this.props.questionIds.filter((id) => (
+            this.props.questions[id].optionOne.votes.includes(this.props.authedUser) || this.props.questions[id].optionTwo.votes.includes(this.props.authedUser))),
+        hasNotVoted: this.props.questionIds.filter((id) => (
+            !this.props.questions[id].optionOne.votes.includes(this.props.authedUser) && !this.props.questions[id].optionTwo.votes.includes(this.props.authedUser)))
     }
 
     handleShowQuestions = (type) => {
         this.setState({
-            showQuestions: type
+            showQuestions: type,
         })
-        console.log(">>>> Clicked TAB for " + type)
+        // console.log(">>>> Clicked TAB for " + type)
     }
 
     render() {
-        console.log(this.props)
+        console.log('*********** Dashboard - this.props ***********', this.props)
+        console.log('*** Dashboard - this.state ***', this.state)
+
         return (
             <Pane
                 display="flex"
@@ -70,13 +76,20 @@ class Dashboard extends Component {
                             </Heading>
                         </Pane>
                     </div>
-                    {/* List each Question component */}
+                    {/* List each Question component filtered by Unanswered/Answered */}
                     <ul>
-                        {this.props.questionIds.map((id) => (
-                            <li key={id}>
-                                <Question id={id}/>
-                            </li>
-                        ))}
+                        {this.state.showQuestions === 'unansweredQuestions'
+                            ? this.state.hasNotVoted.map((id) =>
+                                <li key={id}>
+                                    <Question id={id}/>
+                                </li>
+                            )
+                            : this.state.hasVoted.map((id) =>
+                                <li key={id}>
+                                    <Question id={id}/>
+                                </li>
+                            )
+                        }
                     </ul>
                 </Card>
             </Pane>
@@ -84,8 +97,12 @@ class Dashboard extends Component {
     }
 }
 
-function mapStateToProps({ questions }) {
+function mapStateToProps({authedUser, questions}) {
+    console.log('***** Dashboard - questions', questions)
+
     return {
+        authedUser,
+        questions,
         questionIds: Object.keys(questions)
             .sort((a, b) => questions[b].timestamp - questions[a].timestamp)
     }
