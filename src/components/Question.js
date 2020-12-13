@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Button, Card, Heading, Pane, Paragraph } from 'evergreen-ui'
+import { Avatar, Button, Card, Heading, Pane, Paragraph } from 'evergreen-ui'
 
 class Question extends Component {
 
@@ -27,11 +27,18 @@ class Question extends Component {
                     display="flex"
                     alignItems="center"
                 >
-                    <img
+
+                    {/* TODO:  Use this avatar in nav bar for Anonymous User */}
+                    {/* <Avatar color="neutral" name="?" size={40} marginRight={8} /> */}
+
+                    {/* authedUser */}
+                    <Avatar
                         src={users[author].avatarURL}
-                        alt={`Avatar of ${users[author].name}`}
-                        className='mr-1'
+                        name={`${users[author].name}`}
+                        size={40}
+                        marginRight={8}
                     />
+
                     <Heading
                         is="h2"
                         size={700}
