@@ -5,16 +5,12 @@ import { Card, Heading, Pane } from 'evergreen-ui'
 
 class Dashboard extends Component {
     state = {
-        showQuestions: 'unansweredQuestions',
-        hasVoted: this.props.questionIds.filter((id) => (
-            this.props.questions[id].optionOne.votes.includes(this.props.authedUser) || this.props.questions[id].optionTwo.votes.includes(this.props.authedUser))),
-        hasNotVoted: this.props.questionIds.filter((id) => (
-            !this.props.questions[id].optionOne.votes.includes(this.props.authedUser) && !this.props.questions[id].optionTwo.votes.includes(this.props.authedUser)))
+        showQuestions: 'unansweredQuestions'
     }
 
     handleShowQuestions = (type) => {
         this.setState({
-            showQuestions: type,
+            showQuestions: type
         })
         // console.log(">>>> Clicked TAB for " + type)
     }
@@ -22,6 +18,16 @@ class Dashboard extends Component {
     render() {
         console.log('*********** Dashboard - this.props ***********', this.props)
         console.log('*** Dashboard - this.state ***', this.state)
+
+        const hasVoted = this.props.questionIds.filter((id) => (
+            this.props.questions[id].optionOne.votes.includes(this.props.authedUser) || this.props.questions[id].optionTwo.votes.includes(this.props.authedUser)))
+
+            // console.log('###### hasVoted = ', hasVoted)
+
+        const hasNotVoted = this.props.questionIds.filter((id) => (
+            !this.props.questions[id].optionOne.votes.includes(this.props.authedUser) && !this.props.questions[id].optionTwo.votes.includes(this.props.authedUser)))
+
+            // console.log('###### hasNotVoted = ', hasNotVoted)
 
         return (
             <Pane
@@ -79,14 +85,14 @@ class Dashboard extends Component {
                     {/* List each Question component filtered by Unanswered/Answered */}
                     <ul>
                         {this.state.showQuestions === 'unansweredQuestions'
-                            ? this.state.hasNotVoted.map((id) =>
+                            ? hasNotVoted.map((id) =>
                                 <li key={id}>
-                                    <Question id={id}/>
+                                    <Question id={id} />
                                 </li>
                             )
-                            : this.state.hasVoted.map((id) =>
+                            : hasVoted.map((id) =>
                                 <li key={id}>
-                                    <Question id={id}/>
+                                    <Question id={id} />
                                 </li>
                             )
                         }
