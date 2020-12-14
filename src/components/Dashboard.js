@@ -19,13 +19,15 @@ class Dashboard extends Component {
         console.log('*********** Dashboard - this.props ***********', this.props)
         console.log('*** Dashboard - this.state ***', this.state)
 
-        const hasVoted = this.props.questionIds.filter((id) => (
-            this.props.questions[id].optionOne.votes.includes(this.props.authedUser) || this.props.questions[id].optionTwo.votes.includes(this.props.authedUser)))
+        const { authedUser, questionIds, questions } = this.props
+
+        const hasVoted = questionIds.filter((id) => (
+            questions[id].optionOne.votes.includes(authedUser) || questions[id].optionTwo.votes.includes(authedUser)))
 
             // console.log('###### hasVoted = ', hasVoted)
 
-        const hasNotVoted = this.props.questionIds.filter((id) => (
-            !this.props.questions[id].optionOne.votes.includes(this.props.authedUser) && !this.props.questions[id].optionTwo.votes.includes(this.props.authedUser)))
+        const hasNotVoted = questionIds.filter((id) => (
+            !questions[id].optionOne.votes.includes(authedUser) && !questions[id].optionTwo.votes.includes(authedUser)))
 
             // console.log('###### hasNotVoted = ', hasNotVoted)
 
@@ -46,8 +48,7 @@ class Dashboard extends Component {
                     elevation={4}
                     flexDirection="column"
                 >
-                    {/* Tabs to change type of questions to display */}
-                    {/* Apply bg color conditionally per active tab */}
+                    {/* Tabs to change type of questions to display; Apply bg color conditionally per active tab */}
                     <div className="flex text-center cursor-pointer">
                         <Pane
                             alignItems="center"
@@ -103,7 +104,7 @@ class Dashboard extends Component {
     }
 }
 
-function mapStateToProps({authedUser, questions}) {
+function mapStateToProps({ authedUser, questions }) {
     console.log('***** Dashboard - questions', questions)
 
     return {
