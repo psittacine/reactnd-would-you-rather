@@ -33,10 +33,10 @@ class Dashboard extends Component {
 
         return (
             <Pane
-                display="flex"
-                alignItems="center"
-                justifyContent="center"
-                border="default"
+                // display="flex"
+                // alignItems="center"
+                // justifyContent="center"
+                // border="default"
             >
                 {/* Question List container */}
                 <Card

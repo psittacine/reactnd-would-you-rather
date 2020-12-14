@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 import { Avatar, Button, Card, Heading, Pane, Paragraph } from 'evergreen-ui'
 
 class Question extends Component {
 
     render() {
         console.log('*********** Question - this.props ***********', this.props)
-        console.log('*** Question - this.state ***', this.state)
+        // console.log('*** Question - this.state ***', this.state)
 
         const { question, author, users, userAuthed } = this.props
 
@@ -90,26 +91,24 @@ class Question extends Component {
                             </Paragraph>
                         </Card>
                     </div>
-                    {/* <Link to="/questions/:question_id"> */}
                         <Button
                             appearance="primary"
                             marginTop={16}
                             height={40}
                             width={416}
                             justifyContent="center"
-                            onClick={()=> console.log('>>>> Clicked "View Poll" for question ID ' + question.id)}
+                            is={Link}
+                            to={`/questions/${question.id}`}
                         >
                             View Poll
                         </Button>
-                    {/* </Link> */}
-
                 </Pane>
             </Card>
         )
     }
 }
 
-function mapStateToProps ({authedUser, users, questions}, { id }) {
+function mapStateToProps ({ authedUser, users, questions }, { id }) {
     const question = questions[id]
     const author = question ? question["author"] : null
 
