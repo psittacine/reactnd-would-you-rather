@@ -7,6 +7,7 @@ class QuestionPage extends Component {
         console.log('*********** QuestionPage - this.props ***********', this.props)
 
         const { id, question, author, users, optionOneVotes, optionTwoVotes } = this.props
+        const { avatarURL, name } = users[author]
 
         return (
             <Card
@@ -22,8 +23,8 @@ class QuestionPage extends Component {
                     alignItems="center"
                 >
                     <Avatar
-                        src={users[author].avatarURL}
-                        name={`${users[author].name}`}
+                        src={avatarURL}
+                        name={name}
                         size={40}
                         marginRight={8}
                     />
@@ -32,7 +33,7 @@ class QuestionPage extends Component {
                         is="h2"
                         size={700}
                     >
-                        {users[author].name} asks:
+                        {name} asks:
                     </Heading>
                 </Pane>
                 <Pane

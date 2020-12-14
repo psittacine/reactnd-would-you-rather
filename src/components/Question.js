@@ -10,6 +10,7 @@ class Question extends Component {
         // console.log('*** Question - this.state ***', this.state)
 
         const { question, author, users, userAuthed } = this.props
+        const { avatarURL, name } = users[author]
 
         if (question === null) {
             return <p>This Question does not exist.</p>
@@ -28,23 +29,17 @@ class Question extends Component {
                     display="flex"
                     alignItems="center"
                 >
-
-                    {/* TODO:  Use this avatar in nav bar for Anonymous User */}
-                    {/* <Avatar color="neutral" name="?" size={40} marginRight={8} /> */}
-
-                    {/* authedUser */}
                     <Avatar
-                        src={users[author].avatarURL}
-                        name={`${users[author].name}`}
+                        src={avatarURL}
+                        name={name}
                         size={40}
                         marginRight={8}
                     />
-
                     <Heading
                         is="h2"
                         size={700}
                     >
-                        {users[author].name} asks:
+                        {name} asks:
                     </Heading>
                 </Pane>
                 <Pane
