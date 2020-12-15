@@ -8,7 +8,7 @@ import QuestionPage from './components/QuestionPage'
 import { Pane } from 'evergreen-ui'
 // import NewQuestion from './components/NewQuestion'
 // import LeaderBoard from './components/LeaderBoard'
-// import Nav from './components/Nav'
+import Nav from './components/Nav'
 
 class App extends Component {
   componentDidMount() {
@@ -19,21 +19,24 @@ class App extends Component {
       <Router>
         <>
           <LoadingBar />
-          {/* <Nav /> */}
-          <Pane
-            display="flex"
-            alignItems="center"
-            justifyContent="center"
-          >
+          <div>
             {this.props.loading === true
               ? null
               : <div>
+                  <Nav />
+                  <Pane
+                    display="flex"
+                    alignItems="center"
+                    justifyContent="center"
+                  >
                     <Route path='/' exact component={Dashboard} />
                     <Route path='/questions/:id' component={QuestionPage} />
                     {/* <Route path='/new' component={NewQuestion} /> */}
                     {/* <Route path='/leaderboard' component={LeaderBoard} /> */}
-                </div>}
-          </Pane>
+                  </Pane>
+                </div>
+            }
+          </div>
         </>
       </Router>
     )
