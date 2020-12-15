@@ -9,7 +9,7 @@ class Question extends Component {
         console.log('*********** Question - this.props ***********', this.props)
         // console.log('*** Question - this.state ***', this.state)
 
-        const { question, author, users, userAuthed } = this.props
+        const { question, author, users } = this.props
         const { avatarURL, name } = users[author]
 
         if (question === null) {
@@ -115,8 +115,7 @@ function mapStateToProps ({ authedUser, users, questions }, { id }) {
         authedUser,
         users,
         question,
-        author,
-        userAuthed: users[authedUser]
+        author
     }
 }
 
