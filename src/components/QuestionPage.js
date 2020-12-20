@@ -3,11 +3,21 @@ import { connect } from 'react-redux'
 import { Avatar, Button, Card, Heading, Pane, Paragraph } from 'evergreen-ui'
 
 class QuestionPage extends Component {
+
+    handleVote = (questionOption) => {
+        // TODO: saveQuestionAnswer
+        console.log(`>>> Voted for ${questionOption}`)
+    }
+
     render() {
         console.log('*********** QuestionPage - this.props ***********', this.props)
 
-        const { id, question, author, users, optionOneVotes, optionTwoVotes } = this.props
+        const { authedUser, id, question, author, users, optionOneVotes, optionTwoVotes } = this.props
         const { avatarURL, name } = users[author]
+
+        const votedOptionOne = optionOneVotes.includes(authedUser)
+        const votedOptionTwo = optionTwoVotes.includes(authedUser)
+        const hasVoted = votedOptionOne || votedOptionTwo
 
         return (
             <Card
@@ -51,10 +61,14 @@ class QuestionPage extends Component {
                         Would you rather...
                     </Heading>
                     <div className="flex text-center">
+                        {/* optionOne text */}
                         <Card
                             alignItems="center"
                             justifyContent="center"
-                            border="default"
+                            borderTop
+                            borderRight
+                            borderBottom="default"
+                            borderLeft
                             padding={8}
                             marginX={8}
                             width={200}
@@ -65,10 +79,14 @@ class QuestionPage extends Component {
                                 {question.optionOne.text}
                             </Paragraph>
                         </Card>
+                        {/* optionTwo text */}
                         <Card
                             alignItems="center"
                             justifyContent="center"
-                            border="default"
+                            borderTop
+                            borderRight
+                            borderBottom="default"
+                            borderLeft
                             padding={8}
                             marginX={8}
                             width={200}
@@ -80,15 +98,60 @@ class QuestionPage extends Component {
                             </Paragraph>
                         </Card>
                     </div>
-                        <Button
-                            appearance="primary"
-                            marginTop={16}
-                            height={40}
-                            width={416}
+                    <div className="flex text-center">
+                        {/* optionOne vote/stats */}
+                        <Card
+                            alignItems="center"
                             justifyContent="center"
+                            // borderTop="muted"
+                            borderRight
+                            borderBottom
+                            borderLeft
+                            padding={8}
+                            marginX={8}
+                            width={200}
                         >
-                            Submit Vote
-                        </Button>
+                            {hasVoted === true
+                                ? // Show vote STATS
+                                // TODO: Add indication of authedUser's chosen answer
+                                <Paragraph>VOTE STATS HERE</Paragraph>
+                                : // Show vote BUTTON
+                                <Button
+                                    appearance="primary"
+                                    justifyContent="center"
+                                    onClick={() => this.handleVote('optionOne')}
+                                >
+                                    Submit Vote
+                                </Button>
+                            }
+                        </Card>
+                        {/* optionTwo vote/stats */}
+                        <Card
+                            alignItems="center"
+                            justifyContent="center"
+                            // borderTop="muted"
+                            borderRight
+                            borderBottom
+                            borderLeft
+                            padding={8}
+                            marginX={8}
+                            width={200}
+                        >
+                            {hasVoted === true
+                                ? // Show vote STATS
+                                // TODO: Add indication of authedUser's chosen answer
+                                <Paragraph>VOTE STATS HERE</Paragraph>
+                                : // Show vote BUTTON
+                                <Button
+                                    appearance="primary"
+                                    justifyContent="center"
+                                    onClick={() => this.handleVote('optionTwo')}
+                                >
+                                    Submit Vote
+                                </Button>
+                            }
+                        </Card>
+                    </div>
                 </Pane>
             </Card>
         )
