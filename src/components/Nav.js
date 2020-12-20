@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { NavLink } from 'react-router-dom'
-import { Avatar, Pane, Paragraph } from 'evergreen-ui'
+import { Avatar, Icon, LogOutIcon, Pane, Paragraph } from 'evergreen-ui'
 
 class Nav extends Component {
 
@@ -51,6 +51,11 @@ class Nav extends Component {
                                 onClick={()=> console.log('>>>> Clicked "Logout"')}
                             >
                                 Logout
+                                <Icon
+                                    icon={LogOutIcon}
+                                    size={12}
+                                    marginLeft={8}
+                                />
                             </Pane>
                         </div>
                     </div>
