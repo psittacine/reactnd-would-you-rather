@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import YourVoteBadge from './YourVoteBadge'
 import { Avatar, Button, Card, Heading, Pane, Paragraph } from 'evergreen-ui'
 
 class QuestionPage extends Component {
@@ -18,6 +19,12 @@ class QuestionPage extends Component {
         const votedOptionOne = optionOneVotes.includes(authedUser)
         const votedOptionTwo = optionTwoVotes.includes(authedUser)
         const hasVoted = votedOptionOne || votedOptionTwo
+
+        const optionOneVotesCount = optionOneVotes.length
+        const optionTwoVotesCount = optionTwoVotes.length
+        const totalVotesCount = optionOneVotesCount + optionTwoVotesCount
+        const optionOneVotesPercent = ((optionOneVotesCount / totalVotesCount) * 100).toFixed(2)
+        const optionTwoVotesPercent = ((optionTwoVotesCount / totalVotesCount) * 100).toFixed(2)
 
         return (
             <Card
@@ -113,8 +120,18 @@ class QuestionPage extends Component {
                         >
                             {hasVoted === true
                                 ? // Show vote STATS
-                                // TODO: Add indication of authedUser's chosen answer
-                                <Paragraph>VOTE STATS HERE</Paragraph>
+                                <>
+                                    <Paragraph>
+                                        {optionOneVotesPercent}%
+                                    </Paragraph>
+                                    <Paragraph>
+                                        {optionOneVotesCount} out of {totalVotesCount} votes
+                                    </Paragraph>
+                                    {votedOptionOne === true
+                                        ? <YourVoteBadge />
+                                        : null
+                                    }
+                                </>
                                 : // Show vote BUTTON
                                 <Button
                                     appearance="primary"
@@ -139,8 +156,18 @@ class QuestionPage extends Component {
                         >
                             {hasVoted === true
                                 ? // Show vote STATS
-                                // TODO: Add indication of authedUser's chosen answer
-                                <Paragraph>VOTE STATS HERE</Paragraph>
+                                <>
+                                    <Paragraph>
+                                        {optionTwoVotesPercent}%
+                                    </Paragraph>
+                                    <Paragraph>
+                                        {optionTwoVotesCount} out of {totalVotesCount} votes
+                                    </Paragraph>
+                                    {votedOptionTwo === true
+                                        ? <YourVoteBadge />
+                                        : null
+                                    }
+                                </>
                                 : // Show vote BUTTON
                                 <Button
                                     appearance="primary"
