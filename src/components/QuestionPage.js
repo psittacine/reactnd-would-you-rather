@@ -1,13 +1,20 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { handleSetQuestionAnswer } from '../actions/questions'
 import YourVoteBadge from './YourVoteBadge'
 import { Avatar, Button, Card, Heading, Pane, Paragraph } from 'evergreen-ui'
 
 class QuestionPage extends Component {
 
     handleVote = (questionOption) => {
-        // TODO: saveQuestionAnswer
-        console.log(`>>> Voted for ${questionOption}`)
+        // console.log(`>>> Voted for ${questionOption}`)
+        const { dispatch, authedUser, question } = this.props
+
+        dispatch(handleSetQuestionAnswer({
+            authedUser,
+            qid: question.id,
+            answer: questionOption
+        }))
     }
 
     render() {
