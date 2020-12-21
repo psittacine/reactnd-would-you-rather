@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Question from './Question'
-import { Card, Heading, Pane } from 'evergreen-ui'
+import { Card, Heading, Pane, Paragraph } from 'evergreen-ui'
 
 class Dashboard extends Component {
     state = {
@@ -86,15 +86,55 @@ class Dashboard extends Component {
                     {/* List each Question component filtered by Unanswered/Answered */}
                     <ul>
                         {this.state.showQuestions === 'unansweredQuestions'
-                            ? hasNotVoted.map((id) =>
-                                <li key={id}>
-                                    <Question id={id} />
-                                </li>
-                            )
-                            : hasVoted.map((id) =>
-                                <li key={id}>
-                                    <Question id={id} />
-                                </li>
+                            // Display content for Unanswered Questions tab
+                            ? !Object.keys(hasNotVoted).length
+                                ? // Display message for no Unanswered Questions
+                                    <li>
+                                        <Card
+                                            alignItems="center"
+                                            justifyContent="center"
+                                            border="default"
+                                            margin={16}
+                                            padding={8}
+                                            elevation={2}
+                                        >
+                                            <Paragraph
+                                                size={500}
+                                            >
+                                                You answered all the questions!
+                                            </Paragraph>
+                                        </Card>
+                                    </li>
+                                : // Display Unanswered Questions
+                                    hasNotVoted.map((id) =>
+                                        <li key={id}>
+                                            <Question id={id} />
+                                        </li>
+                                )
+                            // Display content for Answered Questions tab
+                            : !Object.keys(hasVoted).length
+                                ? // Display message for no Answered Questions
+                                    <li>
+                                        <Card
+                                            alignItems="center"
+                                            justifyContent="center"
+                                            border="default"
+                                            margin={16}
+                                            padding={8}
+                                            elevation={2}
+                                        >
+                                            <Paragraph
+                                                size={500}
+                                            >
+                                                You have not answered any questions yet!
+                                            </Paragraph>
+                                        </Card>
+                                    </li>
+                                : // Display Unanswered Questions
+                                    hasVoted.map((id) =>
+                                        <li key={id}>
+                                            <Question id={id} />
+                                        </li>
                             )
                         }
                     </ul>
