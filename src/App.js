@@ -6,7 +6,7 @@ import LoadingBar from 'react-redux-loading'
 import Dashboard from './components/Dashboard'
 import QuestionPage from './components/QuestionPage'
 import { Pane } from 'evergreen-ui'
-// import NewQuestion from './components/NewQuestion'
+import NewQuestion from './components/NewQuestion'
 // import LeaderBoard from './components/LeaderBoard'
 import Nav from './components/Nav'
 
@@ -31,7 +31,7 @@ class App extends Component {
                   >
                     <Route path='/' exact component={Dashboard} />
                     <Route path='/questions/:id' component={QuestionPage} />
-                    {/* <Route path='/new' component={NewQuestion} /> */}
+                    <Route path='/new' component={NewQuestion} />
                     {/* <Route path='/leaderboard' component={LeaderBoard} /> */}
                   </Pane>
                 </div>
