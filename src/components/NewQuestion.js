@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { handleSetQuestion } from '../actions/questions'
+import { Redirect } from 'react-router-dom'
 import { Button, Card, Heading, Pane, TextInput } from 'evergreen-ui'
 
 class NewQuestion extends Component {
     state = {
         optionOne: '',
-        optionTwo: ''
+        optionTwo: '',
+        toHome: false
     }
 
     handleChange = (e) => {
@@ -38,14 +40,18 @@ class NewQuestion extends Component {
 
         this.setState(() => ({
             optionOne: '',
-            optionTwo: ''
+            optionTwo: '',
+            toHome: true
         }))
     }
 
     render() {
-        const { optionOne, optionTwo } = this.state
+        const { optionOne, optionTwo, toHome } = this.state
 
-        // TODO: Redirect to / if submitted
+        // Redirect to / after submit
+        if (toHome === true) {
+            return <Redirect to='/' />
+        }
 
         return (
 
