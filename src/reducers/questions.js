@@ -1,4 +1,4 @@
-import { GET_QUESTIONS, SET_QUESTION_ANSWER } from '../actions/questions'
+import { GET_QUESTIONS, SET_QUESTION_ANSWER, SET_QUESTION } from '../actions/questions'
 
 export default function questions(state = {}, action) {
     switch (action.type) {
@@ -22,12 +22,17 @@ export default function questions(state = {}, action) {
                             : state[action.qid].optionOne.votes
                     },
                     optionTwo: {
-                        ...state[action.qid].optionOne,
+                        ...state[action.qid].optionTwo,
                         votes: action.answer === 'optionTwo'
                             ? state[action.qid].optionTwo.votes.concat([action.authedUser])
                             : state[action.qid].optionTwo.votes
                     }
                 }
+            }
+        case SET_QUESTION :
+            return {
+                ...state,
+                [action.question.id]: action.question
             }
         default:
             return state

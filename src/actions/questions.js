@@ -1,7 +1,9 @@
-import { saveQuestionAnswer } from '../utils/api'
+import { saveQuestionAnswer, saveQuestion } from '../utils/api'
+import { showLoading, hideLoading } from 'react-redux-loading'
 
 export const GET_QUESTIONS = 'GET_QUESTIONS'
-export const SET_QUESTION_ANSWER = 'SET_QUESTION_ANSWER'
+export const SET_QUESTION_ANSWER = 'SET_QUESTION_ANSWER' // vote
+export const SET_QUESTION = 'SET_QUESTION' // new question
 
 export function getQuestions(questions) {
     return {
@@ -28,5 +30,28 @@ export function handleSetQuestionAnswer (info) {
             console.warn('Error in handleSetQuestionAnswer: ', e)
             alert('There was an error answering the question. Try again.')
         })
+    }
+}
+
+function setQuestion (question) {
+    return {
+        type: SET_QUESTION,
+        question
+    }
+}
+
+export function handleSetQuestion (optionOneText, optionTwoText) {
+    return (dispatch, getState) => {
+        const { authedUser } = getState()
+
+        dispatch(showLoading())
+
+        return saveQuestion({
+            optionOneText,
+            optionTwoText,
+            author: authedUser,
+        })
+            .then((question) => dispatch(setQuestion(question)))
+            .then(() => dispatch(hideLoading()))
     }
 }

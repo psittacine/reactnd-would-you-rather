@@ -1,25 +1,17 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { handleSetQuestion } from '../actions/questions'
 import { Button, Card, Heading, Pane, TextInput } from 'evergreen-ui'
 
 class NewQuestion extends Component {
     state = {
-        // text: '',
-        /*
-        optionOne: {
-            text: ''
-        },
-        optionTwo: {
-            text: ''
-        }
-        */
         optionOne: '',
         optionTwo: ''
     }
 
     handleChange = (e) => {
-        // const text = e.target.value
 
-        console.log('this.state: ', this.state) // {optionOne: "one", optionTwo: "two"}
+        // console.log('this.state: ', this.state) // {optionOne: "one", optionTwo: "two"}
         // console.log('e.target.name: ', e.target.name) // optionOne
         // console.log('e.target.value: ', e.target.value) // one
 
@@ -27,14 +19,6 @@ class NewQuestion extends Component {
         const optionValue = e.target.value
 
         this.setState(() => ({
-            /*
-            optionOne: {
-                text: optionOneText
-            },
-            optionTwo: {
-                text: optionTwoText
-            }
-             */
             ...this.state,
             [optionName]: optionValue
         }))
@@ -43,18 +27,16 @@ class NewQuestion extends Component {
     handleSubmit = (e) => {
         e.preventDefault()
 
-        // const { text } = this.state
-
         const { optionOne, optionTwo } = this.state
+        const { dispatch } = this.props
 
-        // TODO: Add Question to Store
         // str.trim()
+        dispatch(handleSetQuestion(optionOne.trim(), optionTwo.trim()))
 
-        console.log('NewQuestion - optionOne: ', optionOne)
-        console.log('NewQuestion - optionTwo: ', optionTwo)
+        // console.log('NewQuestion - optionOne: ', optionOne)
+        // console.log('NewQuestion - optionTwo: ', optionTwo)
 
         this.setState(() => ({
-            // text: ''
             optionOne: '',
             optionTwo: ''
         }))
@@ -162,4 +144,4 @@ class NewQuestion extends Component {
     }
 }
 
-export default NewQuestion
+export default connect()(NewQuestion)
