@@ -18,7 +18,7 @@ class QuestionPage extends Component {
     }
 
     render() {
-        console.log('*********** QuestionPage - this.props ***********', this.props)
+        // console.log('*********** QuestionPage - this.props ***********', this.props)
 
         const { authedUser, id, question, author, users, optionOneVotes, optionTwoVotes } = this.props
         const { avatarURL, name } = users[author]

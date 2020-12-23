@@ -16,8 +16,8 @@ class Dashboard extends Component {
     }
 
     render() {
-        console.log('*********** Dashboard - this.props ***********', this.props)
-        console.log('*** Dashboard - this.state ***', this.state)
+        // console.log('*********** Dashboard - this.props ***********', this.props)
+        // console.log('*** Dashboard - this.state ***', this.state)
 
         const { authedUser, questionIds, questions } = this.props
 
@@ -145,7 +145,7 @@ class Dashboard extends Component {
 }
 
 function mapStateToProps({ authedUser, questions }) {
-    console.log('***** Dashboard - questions', questions)
+    // console.log('***** Dashboard - questions', questions)
 
     return {
         authedUser,

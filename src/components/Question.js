@@ -6,7 +6,7 @@ import { Avatar, Button, Card, Heading, Pane, Paragraph } from 'evergreen-ui'
 class Question extends Component {
 
     render() {
-        console.log('*********** Question - this.props ***********', this.props)
+        // console.log('*********** Question - this.props ***********', this.props)
         // console.log('*** Question - this.state ***', this.state)
 
         const { question, author, users } = this.props
@@ -107,9 +107,9 @@ function mapStateToProps ({ authedUser, users, questions }, { id }) {
     const question = questions[id]
     const author = question ? question["author"] : null
 
-    console.log('***** Question - question *****', question)
-    console.log('***** Question - question.id *****', question.id)
-    console.log('***** Question - author *****', author)
+    // console.log('***** Question - question *****', question)
+    // console.log('***** Question - question.id *****', question.id)
+    // console.log('***** Question - author *****', author)
 
     return {
         authedUser,

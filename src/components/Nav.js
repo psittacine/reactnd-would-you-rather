@@ -6,7 +6,7 @@ import { Avatar, Icon, LogOutIcon, Pane, Paragraph } from 'evergreen-ui'
 class Nav extends Component {
 
     render() {
-        console.log('*********** Nav - this.props ***********', this.props)
+        // console.log('*********** Nav - this.props ***********', this.props)
 
         const { authedUser, users } = this.props
         const { avatarURL, name } = users[authedUser]
