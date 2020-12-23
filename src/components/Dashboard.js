@@ -130,7 +130,7 @@ class Dashboard extends Component {
                                             </Paragraph>
                                         </Card>
                                     </li>
-                                : // Display Unanswered Questions
+                                : // Display Answered Questions
                                     hasVoted.map((id) =>
                                         <li key={id}>
                                             <Question id={id} />
