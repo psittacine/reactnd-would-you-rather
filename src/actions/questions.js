@@ -1,4 +1,5 @@
 import { saveQuestionAnswer, saveQuestion } from '../utils/api'
+import { setUserAnswers, setUserQuestions } from './users'
 import { showLoading, hideLoading } from 'react-redux-loading'
 
 export const GET_QUESTIONS = 'GET_QUESTIONS'
@@ -24,6 +25,7 @@ function setQuestionAnswer ({ authedUser, qid, answer }) {
 export function handleSetQuestionAnswer (info) {
     return (dispatch) => {
         dispatch(setQuestionAnswer(info))
+        dispatch(setUserAnswers(info))
 
     return saveQuestionAnswer(info)
         .catch((e) => {
@@ -51,7 +53,13 @@ export function handleSetQuestion (optionOneText, optionTwoText) {
             optionTwoText,
             author: authedUser,
         })
-            .then((question) => dispatch(setQuestion(question)))
+            .then((question) => {
+                dispatch(setQuestion(question))
+                dispatch(setUserQuestions({
+                    authedUser,
+                    question: question.id
+                }))
+            })
             .then(() => dispatch(hideLoading()))
     }
 }

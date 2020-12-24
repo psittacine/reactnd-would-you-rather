@@ -113,7 +113,7 @@ class LeaderBoardCard extends Component {
 function mapStateToProps ({ users }, { id }) {
     const user = users[id]
 
-    console.log('***** LeaderBoardCard - user *****', user)
+    // console.log('***** LeaderBoardCard - user *****', user)
     // console.log('***** LeaderBoardCard - user.id *****', user.id)
 
     return {
