@@ -4,11 +4,12 @@ import { connect } from 'react-redux'
 import { handleInitialData } from './actions/shared'
 import LoadingBar from 'react-redux-loading'
 import Dashboard from './components/Dashboard'
+import LeaderBoard from './components/LeaderBoard'
+import Login from './components/Login'
+import Nav from './components/Nav'
+import NewQuestion from './components/NewQuestion'
 import QuestionPage from './components/QuestionPage'
 import { Pane } from 'evergreen-ui'
-import NewQuestion from './components/NewQuestion'
-import LeaderBoard from './components/LeaderBoard'
-import Nav from './components/Nav'
 
 class App extends Component {
   componentDidMount() {
@@ -22,19 +23,26 @@ class App extends Component {
           <div>
             {this.props.loading === true
               ? null
-              : <div>
-                  <Nav />
-                  <Pane
-                    display="flex"
-                    alignItems="center"
-                    justifyContent="center"
-                  >
-                    <Route path='/' exact component={Dashboard} />
-                    <Route path='/questions/:id' component={QuestionPage} />
-                    <Route path='/new' component={NewQuestion} />
-                    <Route path='/leaderboard' component={LeaderBoard} />
-                  </Pane>
-                </div>
+              : this.props.authedUser === 'anonymoususer'
+                ? // prompt user to log in
+                  <>
+                    <Nav />
+                    <Login />
+                  </>
+                : // logged in view
+                  <>
+                    <Nav />
+                    <Pane
+                      display="flex"
+                      alignItems="center"
+                      justifyContent="center"
+                    >
+                      <Route path='/' exact component={Dashboard} />
+                      <Route path='/questions/:id' component={QuestionPage} />
+                      <Route path='/new' component={NewQuestion} />
+                      <Route path='/leaderboard' component={LeaderBoard} />
+                    </Pane>
+                  </>
             }
           </div>
         </>
@@ -45,7 +53,8 @@ class App extends Component {
 
 function mapStateToProps({ authedUser }) {
   return {
-    loading: authedUser === null
+    loading: authedUser === null,
+    authedUser
   }
 }
 

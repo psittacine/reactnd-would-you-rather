@@ -1,15 +1,21 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { NavLink } from 'react-router-dom'
+import {setAuthedUser} from '../actions/authedUser'
 import { Avatar, Icon, LogOutIcon, Pane, Paragraph } from 'evergreen-ui'
 
 class Nav extends Component {
+
+    handleLogout = () => {
+        const { dispatch } = this.props
+        dispatch(setAuthedUser('anonymoususer'))
+    }
 
     render() {
         // console.log('*********** Nav - this.props ***********', this.props)
 
         const { authedUser, users } = this.props
-        const { avatarURL, name } = users[authedUser]
+        // const { avatarURL, name } = users[authedUser]  // don't use this, undefined if anonymoususer
 
         return (
             // Nav bar template adapted from Tailwind UI free sample components - https://tailwindui.com/
@@ -33,30 +39,53 @@ class Nav extends Component {
                             </div>
                         </div>
                         <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                            <Paragraph
-                                color="white"
-                            >
-                                Welcome, {name}
-                            </Paragraph>
-                            <Avatar
-                                src={avatarURL}
-                                name={name}
-                                size={32}
-                                marginLeft={12}
-                            />
-                            <Pane
-                                is="button"
-                                className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                                marginLeft={16}
-                                onClick={()=> console.log('>>>> Clicked "Logout"')}
-                            >
-                                Logout
-                                <Icon
-                                    icon={LogOutIcon}
-                                    size={12}
-                                    marginLeft={8}
-                                />
-                            </Pane>
+
+                            {/* User greeting */}
+                            {authedUser === 'anonymoususer'
+                                ? // Anonymous
+                                <>
+                                    <Paragraph
+                                    color="white"
+                                    >
+                                        Welcome, Anonymous User
+                                    </Paragraph>
+                                    <Avatar
+                                        color="neutral"
+                                        name="?"
+                                        size={32}
+                                        marginLeft={12}
+                                    />
+                                </>
+                                : // authedUser
+                                <>
+                                    <Paragraph
+                                    color="white"
+                                    >
+                                        Welcome, {users[authedUser].name}
+                                    </Paragraph>
+                                    <Avatar
+                                        src={users[authedUser].avatarURL}
+                                        name={users[authedUser].name}
+                                        size={32}
+                                        marginLeft={12}
+                                    />
+                                    {/* Logout button for authedUser */}
+                                    <Pane
+                                        is="button"
+                                        className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                                        marginLeft={16}
+                                        onClick={()=> this.handleLogout()}
+                                    >
+                                        Logout
+                                        <Icon
+                                            icon={LogOutIcon}
+                                            size={12}
+                                            marginLeft={8}
+                                        />
+                                    </Pane>
+                                </>
+                            }
+
                         </div>
                     </div>
                 </div>
