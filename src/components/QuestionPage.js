@@ -21,7 +21,7 @@ class QuestionPage extends Component {
     render() {
         // console.log('*********** QuestionPage - this.props ***********', this.props)
 
-        const { authedUser, id, question, author, users, optionOneVotes, optionTwoVotes } = this.props
+        const { authedUser, question, author, users, optionOneVotes, optionTwoVotes } = this.props
 
         if (!question) {
             return <Redirect to='/404' />
@@ -227,7 +227,6 @@ function mapStateToProps({ authedUser, users, questions }, props) {
     // console.log('***** QuestionPage - optionTwoVotes *****', optionTwoVotes)
 
     return {
-        id,
         authedUser,
         users,
         question,

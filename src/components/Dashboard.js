@@ -32,12 +32,7 @@ class Dashboard extends Component {
             // console.log('###### hasNotVoted = ', hasNotVoted)
 
         return (
-            <Pane
-                // display="flex"
-                // alignItems="center"
-                // justifyContent="center"
-                // border="default"
-            >
+            <Pane>
                 {/* Question List container */}
                 <Card
                     display="flex"

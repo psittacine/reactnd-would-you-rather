@@ -5,19 +5,16 @@ import { Avatar, Card, Heading, Pane } from 'evergreen-ui'
 
 class LoginCard extends Component {
 
-
     handleLoginSelection = () => {
         const { dispatch, id } = this.props
         dispatch(setAuthedUser(id))
     }
-
 
     render() {
         // console.log('*********** LoginCard - this.props ***********', this.props)
 
         const { user } = this.props
         const { avatarURL, name } = user
-
 
         return (
             <Card

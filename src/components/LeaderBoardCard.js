@@ -5,7 +5,7 @@ import { Avatar, Card, Heading, Pane, Paragraph } from 'evergreen-ui'
 class LeaderBoardCard extends Component {
 
     render() {
-        console.log('*********** LeaderBoardCard - this.props ***********', this.props)
+        // console.log('*********** LeaderBoardCard - this.props ***********', this.props)
 
         const { user } = this.props
         const { avatarURL, name } = user
@@ -40,7 +40,6 @@ class LeaderBoardCard extends Component {
                         {name}
                     </Heading>
                 </Pane>
-
                 <Pane
                     margin={4}
                     display="flex"

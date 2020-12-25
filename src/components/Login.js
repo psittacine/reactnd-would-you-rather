@@ -6,7 +6,7 @@ import { Card, Heading, Pane } from 'evergreen-ui'
 class Login extends Component {
 
     render() {
-        console.log('*********** Login - this.props ***********', this.props)
+        // console.log('*********** Login - this.props ***********', this.props)
 
         const { users } = this.props
 

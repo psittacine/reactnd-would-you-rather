@@ -32,7 +32,7 @@ class NewQuestion extends Component {
         const { optionOne, optionTwo } = this.state
         const { dispatch } = this.props
 
-        // str.trim()
+        // str.trim() - Trim leading/trailing whitespace from submitted options
         dispatch(handleSetQuestion(optionOne.trim(), optionTwo.trim()))
 
         // console.log('NewQuestion - optionOne: ', optionOne)
@@ -54,7 +54,6 @@ class NewQuestion extends Component {
         }
 
         return (
-
             <Pane>
                 <Card
                     display="flex"
@@ -145,7 +144,6 @@ class NewQuestion extends Component {
                     </Pane>
                 </Card>
             </Pane>
-
         )
     }
 }
