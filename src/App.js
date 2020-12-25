@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { handleInitialData } from './actions/shared'
 import LoadingBar from 'react-redux-loading'
 import Dashboard from './components/Dashboard'
+import ErrorBoundary from './components/ErrorBoundary'
 import LeaderBoard from './components/LeaderBoard'
 import Login from './components/Login'
 import Nav from './components/Nav'
@@ -19,7 +20,7 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <>
+        <ErrorBoundary>
           <LoadingBar />
           <div>
             {this.props.loading === true
@@ -50,7 +51,7 @@ class App extends Component {
                   </>
             }
           </div>
-        </>
+        </ErrorBoundary>
       </Router>
     )
   }
