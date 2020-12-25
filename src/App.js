@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { handleInitialData } from './actions/shared'
 import LoadingBar from 'react-redux-loading'
@@ -8,6 +8,7 @@ import LeaderBoard from './components/LeaderBoard'
 import Login from './components/Login'
 import Nav from './components/Nav'
 import NewQuestion from './components/NewQuestion'
+import PageNotFound from './components/PageNotFound'
 import QuestionPage from './components/QuestionPage'
 import { Pane } from 'evergreen-ui'
 
@@ -37,10 +38,14 @@ class App extends Component {
                       alignItems="center"
                       justifyContent="center"
                     >
-                      <Route path='/' exact component={Dashboard} />
-                      <Route path='/questions/:id' component={QuestionPage} />
-                      <Route path='/new' component={NewQuestion} />
-                      <Route path='/leaderboard' component={LeaderBoard} />
+                      <Switch>
+                        <Route path='/' exact component={Dashboard} />
+                        <Route path='/questions/:id' component={QuestionPage} />
+                        <Route path='/new' component={NewQuestion} />
+                        <Route path='/leaderboard' component={LeaderBoard} />
+                        <Route path='/404' component={PageNotFound} />
+                        <Route path='*' component={PageNotFound} />
+                      </Switch>
                     </Pane>
                   </>
             }
