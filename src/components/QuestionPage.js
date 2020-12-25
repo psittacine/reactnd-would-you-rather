@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { handleSetQuestionAnswer } from '../actions/questions'
+import { Redirect } from 'react-router-dom'
 import YourVoteBadge from './YourVoteBadge'
 import { Avatar, Button, Card, Heading, Pane, Paragraph } from 'evergreen-ui'
 
@@ -21,6 +22,12 @@ class QuestionPage extends Component {
         // console.log('*********** QuestionPage - this.props ***********', this.props)
 
         const { authedUser, id, question, author, users, optionOneVotes, optionTwoVotes } = this.props
+
+        if (!question) {
+            return <Redirect to='/404' />
+        }
+
+        // If !qid, these error
         const { avatarURL, name } = users[author]
 
         const votedOptionOne = optionOneVotes.includes(authedUser)
@@ -198,8 +205,16 @@ function mapStateToProps({ authedUser, users, questions }, props) {
     const question = questions[id]
     const author = question ? question["author"] : null
 
-    const optionOneVotes = question.optionOne.votes
-    const optionTwoVotes = question.optionTwo.votes
+    // If !qid, these error
+    // const optionOneVotes = question.optionOne.votes
+    // const optionTwoVotes = question.optionTwo.votes
+
+    let optionOneVotes, optionTwoVotes
+
+    if (question) {
+        optionOneVotes = question.optionOne.votes
+        optionTwoVotes = question.optionTwo.votes
+    }
 
     // console.log('***** QuestionPage - question *****', question)
     // console.log('***** QuestionPage - question.id *****', question.id)
