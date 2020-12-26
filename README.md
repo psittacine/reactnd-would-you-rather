@@ -1,3 +1,40 @@
+# Would You Rather...?
+
+## React and Redux Project for Udacity's [React Nanodegree Program](https://www.udacity.com/course/react-nanodegree--nd019)
+
+:link: [View Live Project](https://psittacine-reactnd-would-you-rather.netlify.app/) [![Netlify Status](https://api.netlify.com/api/v1/badges/9755c889-fb7c-491c-b3fd-d9d68f73781b/deploy-status)](https://app.netlify.com/sites/psittacine-reactnd-would-you-rather/deploys)
+
+#### Project Overview
+
+In the "Would You Rather?" Project, you'll build a web app that lets a user play the “Would You Rather?” game. The game goes like this: A user is asked a question in the form: “Would you rather [option A] or [option B] ?”. Answering "neither" or "both" is against the rules.
+
+In your app, users will be able to answer questions, see which questions they haven’t answered, see how other people have voted, post questions, and see the ranking of users on the leaderboard.
+
+This project will solidify your understanding of **React and Redux** while giving you a chance to express your creativity. You’ll practice improving the predictability of your application’s state; establish strict rules for getting, listening, and updating the store; and identify what state should live inside of Redux and what state should live inside of React components.
+
+The [starter code](https://github.com/udacity/reactnd-project-would-you-rather-starter) will consist of a `_DATA.js` file, which represents a fake database and contains methods that let you access the data. The [_DATA_README.md](src/utils/_DATA_README.md) file outlines how the data is stored and details the methods you can use to access the database.
+
+---
+
+### Instructions:
+
+* Go to the project directory in the terminal.
+* Run the command `yarn install` to install all project dependencies.
+* Run the command `yarn start` to start the server and launch the application in your default web browser.
+* Choose a user at the log in prompt to interact with the app as that user.
+
+---
+
+#### Attributions
+* [Evergreen](https://evergreen.segment.com/) React UI framework
+* [Material Icons](https://google.github.io/material-design-icons/)
+* [Tailwind CSS](https://tailwindcss.com/) utility-first CSS framework
+* [Tailwind UI](https://tailwindui.com/components) components
+
+
+---
+---
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
