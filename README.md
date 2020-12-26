@@ -2,7 +2,7 @@
 
 ## React and Redux Project for Udacity's [React Nanodegree Program](https://www.udacity.com/course/react-nanodegree--nd019)
 
-:link: [View Live Project](https://psittacine-reactnd-would-you-rather.netlify.app/) [![Netlify Status](https://api.netlify.com/api/v1/badges/9755c889-fb7c-491c-b3fd-d9d68f73781b/deploy-status)](https://app.netlify.com/sites/psittacine-reactnd-would-you-rather/deploys)
+:link: [View Live Project](https://psittacine-reactnd-would-you-rather.netlify.app/)
 
 #### Project Overview
 
